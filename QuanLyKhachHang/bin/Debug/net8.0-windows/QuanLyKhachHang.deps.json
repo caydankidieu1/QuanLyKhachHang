@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v8.0": {
       "QuanLyKhachHang/1.0.0": {
         "dependencies": {
-          "Microsoft.Data.Sqlite": "8.0.11"
+          "Microsoft.Data.Sqlite": "8.0.11",
+          "Velopack": "1.2.158"
         },
         "runtime": {
           "QuanLyKhachHang.dll": {}
@@ -169,7 +170,15 @@
           }
         }
       },
-      "System.Memory/4.5.3": {}
+      "System.Memory/4.5.3": {},
+      "Velopack/1.2.158": {
+        "runtime": {
+          "lib/net8.0/Velopack.dll": {
+            "assemblyVersion": "1.2.0.0",
+            "fileVersion": "1.2.158.15487"
+          }
+        }
+      }
     }
   },
   "libraries": {
@@ -226,6 +235,13 @@
       "sha512": "sha512-3oDzvc/zzetpTKWMShs1AADwZjQ/36HnsufHRPcOjyRAAMLDlu2iD33MBI2opxnezcVUtXyqDXXjoFMOU9c7SA==",
       "path": "system.memory/4.5.3",
       "hashPath": "system.memory.4.5.3.nupkg.sha512"
+    },
+    "Velopack/1.2.158": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wQN38beVrAf0WzFMnZtl7UmwxqwaJ7xVYypqITdOI4YUTYch2UvE+xAjg9msfaitVDtgfWeIcGsjRNQ65C03ZQ==",
+      "path": "velopack/1.2.158",
+      "hashPath": "velopack.1.2.158.nupkg.sha512"
     }
   }
 }
