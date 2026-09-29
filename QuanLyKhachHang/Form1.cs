@@ -127,6 +127,21 @@ namespace QuanLyKhachHang
             ClearForm();
         }
 
+        private void btnCreateDesignation_Click(object? sender, EventArgs e)
+        {
+            if (_selectedCustomerId is null)
+            {
+                MessageBox.Show("Hãy chọn một khách hàng trong danh sách để tạo phiếu chỉ định.", "Chưa chọn khách hàng", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using var designationForm = new ServiceDesignationForm(
+                _selectedCustomerId.Value,
+                _selectedCustomerCode,
+                txtFullName.Text);
+            designationForm.ShowDialog(this);
+        }
+
         private void txtSearch_TextChanged(object? sender, EventArgs e)
         {
             LoadCustomers();
@@ -152,6 +167,7 @@ namespace QuanLyKhachHang
             btnAdd.Enabled = false;
             btnUpdate.Enabled = true;
             btnDelete.Enabled = true;
+            btnCreateDesignation.Enabled = true;
         }
 
         private bool TryGetCustomerFromForm(out Customer customer)
@@ -197,6 +213,7 @@ namespace QuanLyKhachHang
             btnAdd.Enabled = true;
             btnUpdate.Enabled = false;
             btnDelete.Enabled = false;
+            btnCreateDesignation.Enabled = false;
 
             _suppressSelectionChanged = true;
             try

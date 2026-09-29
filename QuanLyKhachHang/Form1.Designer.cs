@@ -32,6 +32,7 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnCreateDesignation;
         private System.Windows.Forms.GroupBox customerListGroupBox;
         private System.Windows.Forms.TableLayoutPanel customerListLayout;
         private System.Windows.Forms.Label lblSearch;
@@ -84,6 +85,7 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.btnCreateDesignation = new System.Windows.Forms.Button();
             this.customerListGroupBox = new System.Windows.Forms.GroupBox();
             this.customerListLayout = new System.Windows.Forms.TableLayoutPanel();
             this.lblSearch = new System.Windows.Forms.Label();
@@ -230,7 +232,7 @@
             this.customerFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
             this.customerFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 82F));
             this.customerFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.customerFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.customerFormLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 84F));
             this.customerFormLayout.Size = new System.Drawing.Size(372, 598);
             this.customerFormLayout.TabIndex = 0;
             // 
@@ -382,14 +384,15 @@
             this.actionPanel.Controls.Add(this.btnUpdate);
             this.actionPanel.Controls.Add(this.btnDelete);
             this.actionPanel.Controls.Add(this.btnClear);
+            this.actionPanel.Controls.Add(this.btnCreateDesignation);
             this.actionPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.actionPanel.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
             this.actionPanel.Location = new System.Drawing.Point(3, 553);
             this.actionPanel.Name = "actionPanel";
             this.actionPanel.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.actionPanel.Size = new System.Drawing.Size(366, 42);
+            this.actionPanel.Size = new System.Drawing.Size(366, 78);
             this.actionPanel.TabIndex = 12;
-            this.actionPanel.WrapContents = false;
+            this.actionPanel.WrapContents = true;
             // 
             // btnAdd
             // 
@@ -448,7 +451,22 @@
             this.btnClear.Text = "Làm mới";
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
+            //
+            // btnCreateDesignation
+            //
+            this.btnCreateDesignation.BackColor = System.Drawing.Color.FromArgb(183, 108, 32);
+            this.btnCreateDesignation.Enabled = false;
+            this.btnCreateDesignation.FlatAppearance.BorderSize = 0;
+            this.btnCreateDesignation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateDesignation.ForeColor = System.Drawing.Color.White;
+            this.btnCreateDesignation.Location = new System.Drawing.Point(3, 44);
+            this.btnCreateDesignation.Name = "btnCreateDesignation";
+            this.btnCreateDesignation.Size = new System.Drawing.Size(144, 30);
+            this.btnCreateDesignation.TabIndex = 4;
+            this.btnCreateDesignation.Text = "Tạo phiếu chỉ định";
+            this.btnCreateDesignation.UseVisualStyleBackColor = false;
+            this.btnCreateDesignation.Click += new System.EventHandler(this.btnCreateDesignation_Click);
+            //
             // customerListGroupBox
             // 
             this.customerListGroupBox.BackColor = System.Drawing.Color.White;

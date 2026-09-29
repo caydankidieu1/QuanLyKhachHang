@@ -1,0 +1,70 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Determine version
+        id: version
+        shell: pwsh
+        run: |
+          $version = "${{ github.ref_name }}".TrimStart('v')
+          if ($version -notmatch '^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$') {
+            throw "Release tags must use the vMAJOR.MINOR.PATCH format."
+          }
+          "value=$version" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+
+      - name: Publish application
+        shell: pwsh
+        run: |
+          dotnet publish QuanLyKhachHang/QuanLyKhachHang.csproj `
+            --configuration Release `
+            --runtime win-x64 `
+            --self-contained true `
+            --output publish `
+            -p:Version=${{ steps.version.outputs.value }}
+
+      - name: Install Velopack CLI
+        shell: pwsh
+        run: |
+          dotnet tool install --global vpk --version 1.2.158
+          "$env:USERPROFILE\.dotnet\tools" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
+      - name: Package release
+        shell: pwsh
+        run: |
+          vpk pack `
+            --packId QuanLyKhachHang `
+            --packVersion "${{ steps.version.outputs.value }}" `
+            --packDir publish `
+            --mainExe QuanLyKhachHang.exe `
+            --runtime win-x64 `
+            --outputDir releases `
+            --packTitle "Quan Ly Khach Hang" `
+            --packAuthors "caydankidieu1"
+
+      - name: Publish GitHub Release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" ./releases/* `
+            --title "Quan Ly Khach Hang ${{ steps.version.outputs.value }}" `
+            --generate-notes
